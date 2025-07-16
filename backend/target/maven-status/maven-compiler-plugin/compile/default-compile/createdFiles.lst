@@ -1,0 +1,5 @@
+com\garage\Application.class
+com\garage\controller\JobCardController.class
+com\garage\entity\JobCard.class
+com\garage\repository\JobCardRepository.class
+com\garage\service\JobCardService.class
