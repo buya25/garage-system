@@ -37,8 +37,19 @@ public class JobCard {
 
     public JobCard() {}
 
+    public JobCard(Long driverId, String vehicleId, String description) {
+        this.driverId = driverId;
+        this.vehicleId = vehicleId;
+        this.description = description;
+        this.status = "NEW";
+        this.createdAt = LocalDateTime.now();
+        this.requiresParts = false;
+        this.approved = false;
+    }
+
     // getters & setters omitted for brevity
     // generate via your IDE or Lombok if you prefer
+
     public Long getId() {
         return id;
     }
@@ -85,6 +96,7 @@ public class JobCard {
     public Boolean getApproved() {
         return approved;
     }
+
     public void setApproved(Boolean approved) {
         this.approved = approved;
     }
