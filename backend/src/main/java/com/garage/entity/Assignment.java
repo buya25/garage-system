@@ -29,6 +29,12 @@ public class Assignment {
     @Column(nullable = false)
     private LocalDateTime assignedAt = LocalDateTime.now();
 
+    @Column(nullable = false)
+    private String progressStatus = "PENDING"; // PENDING, IN_PROGRESS, COMPLETED
+
+    @Column(length = 1000)
+    private String notes;
+
     public Long getId() {
         return id;
     }
@@ -85,4 +91,16 @@ public class Assignment {
         this.assignedAt = assignedAt;
     }
     
+    public String getProgressStatus() {
+        return progressStatus;
+    }
+    public void setProgressStatus(String progressStatus) {
+        this.progressStatus = progressStatus;
+    }
+    public String getNotes() {
+        return notes;
+    }
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
 }

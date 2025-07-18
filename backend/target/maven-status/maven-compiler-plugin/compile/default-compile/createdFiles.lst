@@ -1,12 +1,14 @@
 com\garage\dto\AssignmentRequest.class
 com\garage\service\NotificationService.class
 com\garage\controller\PartController$PartUsageRequest.class
+com\garage\config\WebSocketConfig.class
 com\garage\controller\PartController.class
 com\garage\service\AssignmentService.class
 com\garage\controller\JobCardController.class
 com\garage\dto\CreateJobCardRequest.class
 com\garage\entity\JobCard.class
 com\garage\service\PartService.class
+com\garage\dto\StatusUpdateRequest.class
 com\garage\repository\AssignmentRepository.class
 com\garage\repository\JobCardRepository.class
 com\garage\dto\PartUsageRequest.class

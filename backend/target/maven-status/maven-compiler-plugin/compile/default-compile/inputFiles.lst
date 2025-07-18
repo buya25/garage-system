@@ -1,4 +1,5 @@
 C:\Users\Cipheria\Desktop\garage-system\backend\src\main\java\com\garage\Application.java
+C:\Users\Cipheria\Desktop\garage-system\backend\src\main\java\com\garage\config\WebSocketConfig.java
 C:\Users\Cipheria\Desktop\garage-system\backend\src\main\java\com\garage\controller\advice\GlobalExceptionHandler.java
 C:\Users\Cipheria\Desktop\garage-system\backend\src\main\java\com\garage\controller\AssignmentController.java
 C:\Users\Cipheria\Desktop\garage-system\backend\src\main\java\com\garage\controller\JobCardController.java
@@ -7,6 +8,7 @@ C:\Users\Cipheria\Desktop\garage-system\backend\src\main\java\com\garage\dto\App
 C:\Users\Cipheria\Desktop\garage-system\backend\src\main\java\com\garage\dto\AssignmentRequest.java
 C:\Users\Cipheria\Desktop\garage-system\backend\src\main\java\com\garage\dto\CreateJobCardRequest.java
 C:\Users\Cipheria\Desktop\garage-system\backend\src\main\java\com\garage\dto\PartUsageRequest.java
+C:\Users\Cipheria\Desktop\garage-system\backend\src\main\java\com\garage\dto\StatusUpdateRequest.java
 C:\Users\Cipheria\Desktop\garage-system\backend\src\main\java\com\garage\entity\Assignment.java
 C:\Users\Cipheria\Desktop\garage-system\backend\src\main\java\com\garage\entity\JobCard.java
 C:\Users\Cipheria\Desktop\garage-system\backend\src\main\java\com\garage\entity\Part.java

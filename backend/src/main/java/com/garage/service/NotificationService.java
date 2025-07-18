@@ -4,15 +4,45 @@ import com.garage.entity.JobCard;
 import org.springframework.stereotype.Service;
 import com.garage.entity.Assignment;
 import com.garage.repository.JobCardRepository;
+import com.garage.repository.AssignmentRepository;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 
 @Service
 public class NotificationService {
+
+    private final SimpMessagingTemplate messagingTemplate;
+
+    public NotificationService(SimpMessagingTemplate messagingTemplate) {
+        this.messagingTemplate = messagingTemplate;
+    }
+
+    /**
+     * Notify subscribers when a job card's approval status changes
+     */
     public void sendApprovalNotification(JobCard card) {
-        // TODO: publish event or send WebSocket message to frontend clients
+        // Send to destination /topic/jobcards/approval
+        messagingTemplate.convertAndSend(
+            "/topic/jobcards/approval",
+            card
+        );
     }
+
+    /**
+     * Notify subscribers when an assignment is created
+     */
     public void sendAssignmentNotification(Assignment assignment) {
-        // TODO: publish event or send WebSocket message to frontend clients
+        messagingTemplate.convertAndSend(
+            "/topic/assignments",
+            assignment
+        );
     }
+
+    public void sendProgressNotification(Assignment assignment) {
+    messagingTemplate.convertAndSend(
+        "/topic/assignments/progress",
+        assignment
+    );
+}
     // Additional notification methods can be added here
     // e.g., for job card creation, updates, etc.
     public void sendJobCardCreatedNotification(JobCard card) {

@@ -6,6 +6,9 @@ import com.garage.entity.JobCard;
 import com.garage.repository.AssignmentRepository;
 import com.garage.repository.JobCardRepository;
 import org.springframework.stereotype.Service;
+import com.garage.dto.StatusUpdateRequest;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+
 
 import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
@@ -39,6 +42,21 @@ public class AssignmentService {
         Assignment saved = repo.save(assignment);
         notificationService.sendAssignmentNotification(saved);
         return saved;
+    }
+
+    public Assignment updateStatus(Long assignmentId, StatusUpdateRequest req) {
+        Assignment assignment = repo.findById(assignmentId)
+            .orElseThrow(() -> new EntityNotFoundException("Assignment not found: " + assignmentId));
+
+        assignment.setProgressStatus(req.getStatus());
+        assignment.setNotes(req.getNotes());
+        // Optionally update assignment.status field
+        assignment.setStatus(req.getStatus());
+
+        Assignment updated = repo.save(assignment);
+        // Notify relevant parties
+        notificationService.sendProgressNotification(updated);
+        return updated;
     }
 
     public List<Assignment> listByMechanic(Long mechanicId) {
