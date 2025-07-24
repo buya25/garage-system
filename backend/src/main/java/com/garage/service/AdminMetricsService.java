@@ -41,5 +41,14 @@ public class AdminMetricsService {
         return em.createQuery(q, PartsUsage.class).setMaxResults(10).getResultList();
     }
     
-    // Add more metrics as needed
+    // Add methods for other metrics as needed
+    public List<JobCountByStatus> getJobCountsByMechanic() {
+        String q = "SELECT a.mechanic_id as mechanic_id, COUNT(a.mechanic_id) as count FROM garage_db.assignments a GROUP BY a.mechanic_id";
+        return em.createQuery(q, JobCountByStatus.class).getResultList();
+    }
+    // Add methods for other metrics as needed
+    public List<JobCountByStatus> getJobCountsByDriver() {
+        String q = "SELECT a.driver_id as driver_id, COUNT(a.driver_id) as count FROM garage_db.assignments a GROUP BY a.driver_id";
+        return em.createQuery(q, JobCountByStatus.class).getResultList();
+    }
 }

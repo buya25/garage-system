@@ -52,4 +52,37 @@ public class AssignmentController {
         Assignment result = service.updateStatus(assignmentId, req);
         return ResponseEntity.ok(result);
     }
+
+    // Get assignment details by ID
+    @GetMapping("/{id}")
+    public ResponseEntity<Assignment> getById(@PathVariable("id") Long assignmentId) {
+        Assignment result = service.getById(assignmentId);
+        return ResponseEntity.ok(result);
+    }
+    // List assignments by mechanic
+    @GetMapping("/mechanic/{mechanicId}")
+    public ResponseEntity<List<Assignment>> listByMechanic(@PathVariable("mechanicId") Long mechanicId) {
+        List<Assignment> result = service.listByMechanic(mechanicId);
+        return ResponseEntity.ok(result);
+    }
+    // List assignments by driver
+    @GetMapping("/driver/{driverId}")
+    public ResponseEntity<List<Assignment>> listByDriver(@PathVariable("driverId") Long driverId) {
+        List<Assignment> result = service.listByDriver(driverId);
+        return ResponseEntity.ok(result);
+    }
+    
+    // Delete assignment by ID (optional, if needed)
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable("id") Long assignmentId) {
+        service.delete(assignmentId);
+        return ResponseEntity.noContent().build();
+    }
+    // List all assignments (Admin only)
+    @GetMapping("/all")
+    public ResponseEntity<List<Assignment>> listAll() {
+        List<Assignment> result = service.findAll();
+        return ResponseEntity.ok(result);
+    }
+
 }

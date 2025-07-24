@@ -15,16 +15,19 @@ import java.util.List;
 
 @Service
 public class AssignmentService {
+    // Repositories for Assignment and JobCard entities
     private final AssignmentRepository repo;
     private final JobCardRepository jobCardRepo;
     private final NotificationService notificationService;
 
+    // Constructor injection for dependencies
     public AssignmentService(AssignmentRepository repo, JobCardRepository jobCardRepo, NotificationService notificationService) {
         this.repo = repo;
         this.jobCardRepo = jobCardRepo;
         this.notificationService = notificationService;
     }
 
+    // Assign an approved job card to a mechanic
     public Assignment assignToMechanic(AssignmentRequest req) {
         JobCard card = jobCardRepo.findById(req.getJobCardId())
             .orElseThrow(() -> new EntityNotFoundException("JobCard not found: " + req.getJobCardId()));
@@ -44,6 +47,7 @@ public class AssignmentService {
         return saved;
     }
 
+    // List assignments by mechanic or driver
     public Assignment updateStatus(Long assignmentId, StatusUpdateRequest req) {
         Assignment assignment = repo.findById(assignmentId)
             .orElseThrow(() -> new EntityNotFoundException("Assignment not found: " + assignmentId));
@@ -59,11 +63,40 @@ public class AssignmentService {
         return updated;
     }
 
+    // List assignments by mechanic
     public List<Assignment> listByMechanic(Long mechanicId) {
         return repo.findByMechanicId(mechanicId);
     }
 
+    // List assignments by driver
     public List<Assignment> listByDriver(Long driverId) {
         return repo.findByJobCard_DriverId(driverId);
+    }
+
+    // Get assignment details by ID
+    public Assignment getById(Long assignmentId) {
+        return repo.findById(assignmentId)
+            .orElseThrow(() -> new EntityNotFoundException("Assignment not found: " + assignmentId));
+    }
+    // List all assignments
+    public List<Assignment> findAll() {
+        return repo.findAll();
+    }
+    // Delete assignment by ID
+    public void deleteById(Long assignmentId) {
+        if (!repo.existsById(assignmentId)) {
+            throw new EntityNotFoundException("Assignment not found: " + assignmentId);
+        }
+        repo.deleteById(assignmentId);
+    }
+
+    //find assignments by status
+    public List<Assignment> findByStatus(String status) {
+        return repo.findByJobCard_Status(status);
+    }
+
+    //find assignments by vehicle ID
+    public List<Assignment> findByVehicleId(Long vehicleId) {
+        return repo.findByJobCard_VehicleId(vehicleId);
     }
 }

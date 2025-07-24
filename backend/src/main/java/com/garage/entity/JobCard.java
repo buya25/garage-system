@@ -19,6 +19,12 @@ public class JobCard {
     @Column(nullable = false)
     private String vehicleId;
 
+
+    @ManyToOne
+    @JoinColumn(name = "mechanic_id")
+    private User mechanic;
+
+
     @Column(nullable = false, length = 1000)
     private String description;
 
@@ -99,5 +105,13 @@ public class JobCard {
 
     public void setApproved(Boolean approved) {
         this.approved = approved;
+    }
+
+    public User getMechanic() {
+        return mechanic;
+    }
+
+    public void setMechanic(User mechanic) {
+        this.mechanic = mechanic;
     }
 }
